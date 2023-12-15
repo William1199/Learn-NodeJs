@@ -1,0 +1,5 @@
+{   
+    // cau hinh conpiler
+    "presets": ["@babel/preset-env"]
+
+}
