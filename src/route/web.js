@@ -4,14 +4,15 @@ import homeController from "../controllers/homeController";
 let router = express.Router();
 
 let initWebRoutes = (app) => {
-    router.get("/hello", (req,res) => {
+    router.get("/hello", (req, res) => {
         return res.send("Hello my man")
     });
 
     router.get("/", homeController.getHomePage);
     router.get("/about", homeController.getAboutPage);
+    router.get("/crud", homeController.getCRUD);
 
-    return app.use("/",router);    
+    return app.use("/", router);
 }
 
 module.exports = initWebRoutes;
