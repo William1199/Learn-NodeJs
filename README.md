@@ -5,4 +5,6 @@ npm install --save-dev sequelize-cli@6.2.0<br>
 npm install --save mysql2@2.2.5<br>
 npm install --save sequelize@6.6.2
 
-create folder .evn to connect with database
+create folder .evn to connect with database:<br>
+PORT: <br>
+NODE_ENV:
