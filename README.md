@@ -4,6 +4,7 @@ npm install --save-dev @babel/core@7.12.10 @babel/preset-env@7.12.10 @babel/node
 npm install --save-dev sequelize-cli@6.2.0<br>
 npm install --save mysql2@2.2.5<br>
 npm install --save sequelize@6.6.2
+npm install --save bcryptjs@2.4.3
 
 create folder .env to connect with database:<br>
 PORT: <br>
