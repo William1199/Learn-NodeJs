@@ -10,5 +10,5 @@ create folder .env to connect with database:<br>
 PORT: <br>
 NODE_ENV:
 
-If you have any problem with the libraries version, use npm outdate to check the lasted version. After that, change use npm instal --save-exac "the lib version"
+If you have any problem with the libraries version, use npm outdate to check the lasted version. After that, use npm instal --save-exac "the lib version"
 
