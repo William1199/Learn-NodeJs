@@ -6,7 +6,7 @@ npm install --save mysql2@2.2.5<br>
 npm install --save sequelize@6.6.2<br>
 npm install --save bcryptjs@2.4.3
 
-create folder .env to connect with database:<br>
+create folder .env :<br>
 PORT: <br>
 NODE_ENV:
 
