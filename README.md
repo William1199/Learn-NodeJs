@@ -5,7 +5,7 @@ npm install --save-dev sequelize-cli@6.2.0<br>
 npm install --save mysql2@2.2.5<br>
 npm install --save sequelize@6.6.2<br>
 npm install --save bcryptjs@2.4.3<br>
-npm install --save cors@2.8.
+npm install --save cors@2.8.5
 
 create folder .env :<br>
 PORT: <br>
