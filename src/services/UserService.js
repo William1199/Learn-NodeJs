@@ -1,4 +1,7 @@
 import db from "../models/index"
+import bcrypt from 'bcryptjs';
+
+
 
 let handleUserLogin = (email, password) => {
     return new Promise(async (resolve, reject) => {
@@ -6,19 +9,39 @@ let handleUserLogin = (email, password) => {
             let userData = {};
             let isExist = await checkUserEmail(email);
             if (isExist) {
-                resolve()
+                let user = await db.User.findOne({
+                    where: { email: email },
+                    attributes: ['email', 'roleId', 'password'],
+                    raw: true,
+                });
+                if (user) {
+                    let check = bcrypt.compareSync(password, user.password);
+                    if (check) {
+                        userData.errCode = 0;
+                        userData.message = 'OK';
+                        delete user.password;
+                        userData.user = user;
+                    } else {
+                        userData.errCode = 3;
+                        userData.message = 'Wrong password';
+                    }
+                }
+                else {
+                    userData.errCode = 2;
+                    userData.message = "User is not exist in your system. Please try again!";
+                }
             } else {
                 userData.errCode = 1;
-                userData.errMessage = "Your's Email is not exist in your system. Please try again!";
-                resolve(userData)
+                userData.message = "Your's Email is not exist in your system. Please try again!";
             }
+            resolve(userData)
         } catch (e) {
             reject(e);
         }
     })
 }
 
-let checkUserEmail = (email) => {
+let checkUserEmail = (userEmail) => {
     return new Promise(async (resolve, reject) => {
         try {
             let user = await db.User.findOne({
