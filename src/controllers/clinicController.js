@@ -17,7 +17,8 @@ let getAllClinic = async (req, res) => {
 }
 
 let getClinicByID = async (req, res) => {
-    let clinicId = req.query.id;
+    let clinicId = req.body.id;
+    console.log(clinicId);
     if (!clinicId) {
         return res.status(400).json({
             errCode: 1,
@@ -60,6 +61,7 @@ let deleteClinic = async (req, res) => {
 let editClinic = async (req, res) => {
     let data = req.body;
     let message = await clinicService.editClinic(data);
+    console.log(data);
     return res.status(200).json(message);
 }
 
