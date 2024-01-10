@@ -1,5 +1,5 @@
 import { where } from "sequelize";
-import db from "../models/index"
+import db from "../models/index";
 import bcrypt from 'bcryptjs';
 
 const salt = bcrypt.genSaltSync(10);
@@ -101,24 +101,24 @@ let createNewUser = (data) => {
             if (check) {
                 resolve({
                     errCode: 1,
-                    message: "this Email already used in this system! please try again!"
+                    errMessage: "this Email already used in this system! please try again!"
+                })
+            } else {
+                let hashPasswordFromBcrypt = await hashUserPassword(data.password);
+                await db.User.create({
+                    email: data.email,
+                    password: hashPasswordFromBcrypt,
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    address: data.address,
+                    phoneNumber: data.phoneNumber,
+                    gender: data.gender === '1' ? true : false,
+                    roleId: data.roleId,
                 })
             }
-            let hashPasswordFromBcrypt = await hashUserPassword(data.password);
-            await db.User.create({
-                email: data.email,
-                password: hashPasswordFromBcrypt,
-                firstName: data.firstName,
-                lastName: data.lastName,
-                address: data.address,
-                phoneNumber: data.phoneNumber,
-                gender: data.gender === "1" ? true : false,
-                roleId: data.roleId,
-            })
             resolve({
                 errCode: 0,
                 errMessage: 'OK'
-
             })
         } catch (e) {
             reject(e)
@@ -186,8 +186,6 @@ let deleteUser = (userId) => {
         }
     })
 }
-
-
 
 module.exports = {
     handleUserLogin: handleUserLogin,

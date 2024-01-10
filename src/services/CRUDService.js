@@ -60,7 +60,7 @@ let getUserInfoById = (userId) => {
             if (user) {
                 resolve(user)
             } else {
-                resolve({})
+                resolve()
             }
         } catch (e) {
             reject(e);
@@ -100,9 +100,13 @@ let deleteUserById = (id) => {
                 where: { id: id }
             });
             if (user) {
-                await user.destroy();
+                await user.destroy({
+                    where: { id: id }
+                });
             }
-            resolve();
+            resolve({
+                message: 'delete success'
+            });
         } catch (e) {
             reject(e)
         }
