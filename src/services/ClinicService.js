@@ -1,4 +1,3 @@
-import { resolveInclude } from "ejs";
 import db from "../models/index";
 
 let checkClinicExistByAddress = (clinicAddress) => {
